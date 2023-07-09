@@ -1,7 +1,7 @@
 import React from 'react'
 import plus from '../assets/plus.png'
 
-const Form = ({inputText, setInputText, todos, setTodos }) => {
+const Form = ({inputText, setInputText, todos, setTodos, setStatus}) => {
   const inputTextHandler= (e) =>{
 
   console.log(e.target.value );
@@ -16,14 +16,17 @@ e.preventDefault();
  ]);
  setInputText("");
   };
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
+  };
   return (
     <form>
         <input className="text-black" value={inputText} onChange={inputTextHandler} type='text'/>
         <button onClick={submitTodoHandler} type='submit' className='bg-gray-100'>
           <i className="fas fa-plus-square"></i>
            </button>
-        <div className="select">
-          <select name="todos" className="filter-todo">
+        <div className="select" >
+          <select name="todos" className="filter-todo" onChange={statusHandler}>
             <option value="all">All</option>
             <option value="completed">completed</option>
             <option value="uncompleted">Uncompleted</option>
